@@ -1,0 +1,66 @@
+
+Collider Rigidbody Sandbox
+==========================
+
+ColliderRigidbodyDemo
+---------------------
+This provides an example project illustrating the collider and rigidbody
+functionality of Unity 5. The default.unity scene contains an inverted cube (a
+cube with the normals reversed. Inside of the cube is a sphere representing an
+ionic particle (a particle with charge) The ion has a sphere collider with a 
+physics material (Bouncy) and a rigidbody component. Together they make the ions
+and cube interact with the Unity Physics Engine. 
+
+At start the Ions game object spawns a collection of Ion Prefabs. These ions all 
+start with a random velocity and a positive charge. When they hit the walls they 
+bounce and their polarity flops. If they hit an ion with an opposite charge they 
+bond with one another by adding a FixedJoint component. The FixedJoint component 
+also responds to the Unity Physics Engine. The joints are setup such that they 
+will break if sufficient force or torque is applied. When the bond is broken the
+particles speed away from one another in opposite directions by applying forces
+to their respective rigidbodies that are proportional to their break force.
+
+Vortex
+------
+Simulates particles in a vortex constrained within a cylinder. Each particle
+has a rigidbody and a constant force component. The constant force applied to 
+the particle is determined by it's distance from the center of the cylinder and
+the specified direction of the vortex (clockwise, counter-clockwise). The 
+particles can also be assigned a bouncy force.  
+
+Caveats
+-------
+The API for interacting with rigidbodies and colliders is the same in Unity 4,
+but this project has only been tested with Unity 5.
+
+License
+-------
+This software is licensed under the BSD 3-Clause License
+
+Copyright (c) 2015, Roger Lew (rogerlew@gmail.com)
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this 
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, 
+   this list of conditions and the following disclaimer in the documentation 
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors 
+   may be used to endorse or promote products derived from this software without 
+   specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR 
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON 
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (
+INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
