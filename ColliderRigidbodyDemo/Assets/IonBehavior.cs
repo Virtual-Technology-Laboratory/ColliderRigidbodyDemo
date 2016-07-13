@@ -16,21 +16,21 @@ public class IonBehavior : MonoBehaviour
     public float meanSize = 1;
     public float stdSize = 0.2f;
 
-    private bool? charged = true;
-    private Rigidbody rigidbody;
-    private Renderer renderer;
+    bool? charged = true;
+    Rigidbody _rigidbody;
+    Renderer renderer;
 
     void Start () 
     {
-        rigidbody = gameObject.GetComponent<Rigidbody>();
+        _rigidbody = gameObject.GetComponent<Rigidbody>();
 
         Vector3 newVel = new Vector3(Random.Range(-1f, 1f), 
                                      Random.Range(-1f, 1f), 
                                      Random.Range(-1f, 1f));
         newVel.Normalize();
         newVel *= Random.Range(minimumStartingSpeed, maximumStartingSpeed);
-        rigidbody.velocity = newVel;
-        rigidbody.rotation = Quaternion.Euler(new Vector3(Random.Range(0, 360),
+        _rigidbody.velocity = newVel;
+        _rigidbody.rotation = Quaternion.Euler(new Vector3(Random.Range(0, 360),
                                                           Random.Range(0, 360),  
                                                           Random.Range(0, 360)));
 
@@ -101,10 +101,10 @@ public class IonBehavior : MonoBehaviour
 
         SetCharge(true);
 
-        Vector3 direction = (rigidbody.position - fixedJoint.connectedBody.position).normalized * (breakForce * 0.0000035f);
-        rigidbody.AddForce(direction);
+        Vector3 direction = (_rigidbody.position - fixedJoint.connectedBody.position).normalized * (breakForce * 0.0000035f);
+        _rigidbody.AddForce(direction);
 
-        direction = (fixedJoint.connectedBody.position - rigidbody.position).normalized * (breakForce * 0.0000035f);
+        direction = (fixedJoint.connectedBody.position - _rigidbody.position).normalized * (breakForce * 0.0000035f);
         fixedJoint.connectedBody.AddForce(direction);
     }
 

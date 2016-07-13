@@ -68,10 +68,17 @@ public class VortexManager : MonoBehaviour
         return worldTorque;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKey(KeyCode.Space))
             SpawnParticle();
+
+        if (Input.GetKey(KeyCode.R))
+            Clockwise = !Clockwise;
+    }
+
+    void FixedUpdate()
+    {
 
         for (int i = 0; i< particles.Count; i++)
         {
