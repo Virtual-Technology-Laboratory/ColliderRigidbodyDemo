@@ -50,24 +50,6 @@ public class VortexManager : MonoBehaviour
         return worldForce;
     }
 
-    Vector3 CalculateTorque(Vector3 worldPos)
-    {
-        var localPos = transform.InverseTransformPoint(worldPos);
-        var distance = Mathf.Sqrt(Mathf.Pow(localPos.x, 2) + Mathf.Pow(localPos.z, 2));
-        var angle = halfPI + Mathf.Atan2(localPos.z, localPos.x);
-        var localTorque = maxTorque * (distance / radius) *
-                          new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-        var worldTorque = transform.TransformVector(localTorque);
-
-        if (Clockwise)
-            worldTorque = -worldTorque;
-
-        if (float.IsNaN(worldTorque.x) || float.IsNaN(worldTorque.y) || float.IsNaN(worldTorque.z))
-            return Vector3.zero;
-
-        return worldTorque;
-    }
-
     void Update()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -84,7 +66,7 @@ public class VortexManager : MonoBehaviour
         {
             var cf = particles[i];
             cf.force = CalculateForce(cf.transform.position);
-//            cf.torque = CalculateTorque(cf.transform.position);
+
             if (showDebugRays)
                 Debug.DrawRay(cf.transform.position, cf.force);
         }
